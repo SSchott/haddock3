@@ -5,6 +5,7 @@ import logging
 import os
 import sys
 from haddock.cli import greeting, adieu
+from haddock.cooking import Chef
 from haddock.error import HaddockError
 
 
@@ -30,11 +31,10 @@ def main(args=None):
 
     try:
         # Let the chef work
-        #chef = Chef(recipe_path=options.recipe.name)
+        chef = Chef(recipe_path=options.recipe.name)
         
         # Main loop of execution
-        #chef.cook()
-        pass
+        chef.cook()
 
     except HaddockError as he:
         logging.error(he)

@@ -1,0 +1,36 @@
+# Recipe: Basic scoring with HADDOCK
+
+[[molecules]]
+# Definition of the input molecules:
+[[molecules.1]]
+file = 'T161-rescoring-5.pdb'
+segid = ''
+
+
+[reference]
+file = 'capri_48_161.brk'
+analysis  = 'lowest'
+
+
+[execution]
+nproc = 4
+scheme = 'parallel'
+
+[clustering]
+method = 'fcc'
+details = false
+
+# Cutoff and Threshold
+params = [
+    [0.60, 4.0],
+    [0.70, 4.0],
+    [0.75, 4.0]
+]
+
+[[stage]]
+[[stage.topology]]
+recipe = 'default'
+autohis = true
+
+[[stage.scoring]]
+recipe = ''
