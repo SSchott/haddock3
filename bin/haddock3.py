@@ -3,9 +3,16 @@
 import argparse
 import logging
 import sys
+import os
 from haddock.cli import greeting, adieu
 from haddock.cooking import Chef
-from haddock.error import HaddockError
+from haddock.error import HaddockError, ConfigurationError
+
+
+def check_environment():
+    cns_binary = os.environ.get('HADDOCK_CNS_EXE')
+    if not (cns_binary and os.path.isfile(cns_binary) and os.access(cns_binary, os.X_OK)):
+        raise ConfigurationError(f'CNS binary ({cns_binary}) is not valid')
 
 
 def main(args=None):
@@ -29,6 +36,9 @@ def main(args=None):
                         datefmt='%d/%m/%Y %H:%M:%S')
 
     try:
+        # Check required environmental variables
+        check_environment()
+
         # Let the chef work
         chef = Chef(recipe_path=options.recipe.name)
         
@@ -37,7 +47,7 @@ def main(args=None):
 
     except HaddockError as he:
         logging.error(he)
-        raise SystemExit('Unexpected end, please check errors above.')
+        raise SystemExit('FATAL: Unexpected end, please check errors above.')
 
     # Finish
     logging.info(adieu())
