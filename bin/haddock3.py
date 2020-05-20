@@ -2,7 +2,6 @@
 
 import argparse
 import logging
-import os
 import sys
 from haddock.cli import greeting, adieu
 from haddock.cooking import Chef
@@ -38,6 +37,7 @@ def main(args=None):
 
     except HaddockError as he:
         logging.error(he)
+        raise SystemExit('Unexpected end, please check errors above.')
 
     # Finish
     logging.info(adieu())
