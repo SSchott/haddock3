@@ -20,7 +20,9 @@ $ pip install -r requirements.txt
 
 ### 1.2. Install CNS
 
-Download from [CNS 1.31 UU](https://surfdrive.surf.nl/files/index.php/apps/files/?dir=/Shared/HADDOCK/CNS&fileid=5041663829) repository the appropriate version for your architecture. Once downloaded, place the binary in `bin/cns` folder of your haddock3 installation.
+ * Crystallography & NMR System (CNS)
+    * Make a request on the [CNS website](http://cns-online.org/v1.3/), 
+    * It must be compiled with the contents of `cns1.3/` (provided with the release)
 
 Edit the CNS binary path in `etc/haddock3.json` file:
 
